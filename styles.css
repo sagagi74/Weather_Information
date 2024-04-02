@@ -20,21 +20,23 @@ body {
 }
 
 .search-input {
-    width: calc(100% - 90px);
+ 
     padding: 10px;
-    margin-right: 10px;
-    margin-bottom: 20px;
-    display: inline-block;
+    width: 96%;
+    margin-bottom: 10px;
+    display: block;
 }
 
 .search-button {
-    width: 80px;
+  
     padding: 10px;
     background: #007bff;
     color: white;
+    width: 100%;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    margin-bottom: 20px;
 }
 
 .city-button {
@@ -43,7 +45,7 @@ body {
     border: none;
     padding: 10px;
     margin: 5px 0;
-    text-align: left;
+    text-align: center;
     width: 100%;
     border-radius: 5px;
     cursor: pointer;
