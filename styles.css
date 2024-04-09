@@ -1,9 +1,14 @@
-body {
+/* Global body styles, setting up the font, removing default margins, 
+   and defining a light gray background for the entire page. */
+   body {
     font-family: Arial, sans-serif;
     margin: 0;
     background: #f3f3f3;
 }
 
+/* Styling for the main dashboard container. It uses flexbox to 
+   display its children (search and weather containers) in a row 
+   with space distributed around them. Padding is added for spacing inside. */
 .dashboard-container {
     display: flex;
     flex-direction: row;
@@ -11,6 +16,9 @@ body {
     justify-content: space-around;
 }
 
+/* Styles for the search container, giving it a white background, 
+   padding for spacing, a specific width, a subtle box shadow for depth, 
+   and rounded corners. */
 .search-container {
     background: white;
     padding: 20px;
@@ -19,16 +27,20 @@ body {
     border-radius: 5px;
 }
 
+/* Input styling within the search container. Includes padding, width 
+   adjustment for slightly less than full width, margin for spacing below, 
+   and block display to ensure it takes its own line. */
 .search-input {
- 
     padding: 10px;
     width: 96%;
     margin-bottom: 10px;
     display: block;
 }
 
+/* Search button styles, including padding, background color, text color, 
+   full width, no border, rounded corners, cursor change on hover, 
+   and margin below for spacing. */
 .search-button {
-  
     padding: 10px;
     background: #007bff;
     color: white;
@@ -39,6 +51,9 @@ body {
     margin-bottom: 20px;
 }
 
+/* City button styles within the cities list. It uses block display for full width, 
+   a lighter background for distinction, no border, padding, margin for spacing between, 
+   centered text, and a cursor change on hover. */
 .city-button {
     display: block;
     background: #e7e7e7;
@@ -51,6 +66,7 @@ body {
     cursor: pointer;
 }
 
+/* Styles for the weather container, similar to the search container but with a larger width. */
 .weather-container {
     background: white;
     padding: 20px;
@@ -59,29 +75,54 @@ body {
     border-radius: 5px;
 }
 
+/* Current weather section within the weather container, including a bottom border for separation, 
+   padding below, and margin for spacing from the next content. */
 .current-weather {
     border-bottom: 2px solid #ddd;
     padding-bottom: 20px;
     margin-bottom: 20px;
 }
 
+/* Styling for the forecast container's heading, with added bottom margin for spacing. */
 .forecast-container h3 {
     margin-bottom: 20px;
-   
-    
 }
 
+/* Forecast display styling using flexbox for a row layout, allowing space between each forecast day. */
 .forecast {
     display: flex;
     justify-content: space-between;
     width: auto;
-    display: flex;
     position:relative;
-
-    
-  
-    
 }
+
+/* Individual forecast day styles, including background color, padding for spacing, width percentage for sizing, 
+   centered text, rounded corners, and a solid border for visual separation. */
+.forecast-day {
+    background: #f6e2e2;
+    padding: 25px;
+    width: 18%;
+    text-align: center;
+    border-radius: 5px;
+    border: 5px solid rgb(243, 241, 241);
+}
+
+/* Title row styling for larger screens, setting a specific background color, text color, 
+   padding for vertical spacing, centered text, flexbox for alignment, rounded corners, 
+   specific width, and auto margin for horizontal centering. */
+.title-row {
+    background-color: rgb(118, 118, 236); 
+    color: white; 
+    padding: 20px 0;
+    text-align: center; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    border-radius: 10px;
+    width:97.5%;
+    margin: auto;
+}
+
 
 .forecast-day {
     background: #f6e2e2;
@@ -93,6 +134,22 @@ body {
 }
 
 /* Responsive design for smaller screens */
+
+@media (min-width: 769px) and (max-width: 929px) {
+    
+    .forecast {
+        width: 50%;
+    }
+
+    .title-row {
+  
+        width:95%;
+     
+        }
+    
+  
+}
+
 @media (max-width: 768px) {
     .dashboard-container {
         flex-direction: column;
@@ -113,13 +170,12 @@ body {
         width: 100%;
         margin-bottom: 10px;
     }
-}
 
-@media (min-width: 769px) and (max-width: 929px) {
-    
-    .forecast {
-        width: 50%;
+    .title-row {
+  
+    width:91%;
+ 
     }
-  }
+}
 
 
