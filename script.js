@@ -22,15 +22,32 @@ function fetchWeatherData(cityName, apiKey) {
     const todayAPIUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + cityName + '&appid=' + apiKey;
 
     Promise.all([
+ 
+
         fetch(fivedaysAPIUrl).then(response => {
-            if (!response.ok) {
+            var searchInput = document.querySelector('.search-input');
+           
+            if (response.status === 404) {
+
+                //if city not found, puth  'invalid city name' to .serch-input element
+                searchInput.value = "Invalid City Name";
+
+                throw new Error('City not found for 5-day forecast');
+            } else if (!response.ok) {
                 throw new Error('Network response was not ok for 5-day forecast');
             }
+            //if city found text value to be ""
+            searchInput.value = "";
+             
             return response.json();
         }),
         fetch(todayAPIUrl).then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok for today\'s weather');
+
+            if (response.status === 404) {
+                
+                throw new Error('City not found for today forecast');
+            } else if (!response.ok) {
+                throw new Error('Network response was not ok for 5-day forecast');
             }
             return response.json();
         })
@@ -52,22 +69,24 @@ function processWeatherData(FiveDayData, todayData, cityName) {
         const forecastTime = new Date(forecast.dt * 1000);
         
         if (forecastTime.getUTCHours() === 12) {
-            dailyForecasts.push({
-                humidity: forecast.main.humidity,
-                speed: forecast.wind.speed,
-                temp: forecast.main.temp,
-                date: forecast.dt_txt,
-                weather: forecast.weather[0].main
-            });
+            dailyForecasts.push(forecast);
+
+            console.log("humidity: " + forecast.main.humidity);
+            console.log("speed: " + forecast.wind.speed);
+            console.log("Temp:  " + forecast.main.temp);
+            console.log("date: " + forecast.dt_txt);
+            console.log("weather: " + forecast.weather[0].main);
         }
     }
     
-    localStorage.setItem('forecastFiveDays', JSON.stringify(dailyForecasts));
+    localStorage.setItem('ForecastFiveDays', JSON.stringify(dailyForecasts));
     // Additional logging or UI updates to reflect the fetched weather data
     console.log(`The current temperature in ${cityName} is ${todayData.main.temp}°C`);
     console.log("humidity: " + todayData.main.humidity);
     console.log("Temp:  " + todayData.main.temp);
     console.log("Speed: " + todayData.wind.speed);
     console.log("weather: " + todayData.weather[0].main);
-    // Continue logging other details...
+
+    localStorage.setItem('TodayWeather', JSON.stringify(todayData));
+  
 }
