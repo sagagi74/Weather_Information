@@ -1,21 +1,44 @@
-rendering()
 
+//when page loads, if data exist, it will get it from local storage
+rendering()
+// Function call to start the rendering process
 function rendering(){
 
    //redering for current weather if data exist
    
   const weatherHeading = document.querySelector('.current-weather h2');
   
-  var heading =  JSON.parse(localStorage.getItem('CityName'));
-  console.log(heading.cityname)
-  
-   weatherHeading.textContent = heading.cityname + " (" + heading.date + ") ";
+// Retrieve info from localStorage and parse it
+var heading = JSON.parse(localStorage.getItem('CityName'));
+console.log(heading.cityname);
 
+// Set the content of weatherHeading with city name and date
+weatherHeading.textContent = heading.cityname + " (" + heading.date + ") ";
 
-   
-  
-  //var currentWeather = localstorage.getitem('TodayWeather');
-  //onsole.log(currentWeather)
+// Get the image element by its ID
+var imgElement = document.getElementById('topweatherimage');
+
+// Retrieve the weather condition, assuming it's stored in `heading.images`
+var weatherContent = heading.weather.toLowerCase(); // Convert to lowercase for case-insensitive comparison
+
+// Compare the weather condition and set the image source accordingly
+if (weatherContent === "clear") {
+    imgElement.src = "../images/clear.png";
+}else if (weatherContent === "clouds") {
+    imgElement.src = "../images/clouds.png";
+}else if (weatherContent === "fog") {
+    imgElement.src = "../images/fog.png";
+}else if (weatherContent === "mist") {
+    imgElement.src = "../images/mist.png"; 
+}else if (weatherContent === "rain") {
+    imgElement.src = "../images/rain.png"; 
+}else if (weatherContent === "thunder") {
+    imgElement.src = "../images/thunder.png"; 
+}else {
+    // Set a default image for unmatched cases
+    imgElement.src = "../images/default.png";
+}
+
   
 
    const weatherDetails = document.querySelectorAll('.current-weather p');
@@ -34,8 +57,9 @@ function rendering(){
         console.log("local date: " + ForecastFiveDays.dt_txt);
         console.log("local humidity: " + ForecastFiveDays.main.humidity);
         console.log("local speed: " + ForecastFiveDays.wind.speed);
-        console.log("local Temp:  " + ForecastFiveDays.main.temp);
+        console.log("local Temp:  " +  ForecastFiveDays.main.temp);
         console.log("local weather: " + ForecastFiveDays.weather[0].main);
+       
 
 
         const inputDateString = ForecastFiveDays.dt_txt;
@@ -51,16 +75,37 @@ function rendering(){
         // Formatting the date as "M/D/YYYY"
         const formattedDate = `${month}/${day}/${year}`;
         
-       // console.log(formattedDate)
+     
+       var weatherImage = ForecastFiveDays.weather[0].main.trim().toLowerCase(); 
+        var img = forecastDays[i].querySelector('img');
+        
+        if (weatherImage === "clear") {
+            img.src = "../images/clear.png";
+        } else if (weatherImage === "clouds") {
+            img.src = "../images/clouds.png";
+        } else if (weatherImage === "mist") {
+            img.src = "../images/mist.png";
+        } else if (weatherContent === "fog") {
+            imgElement.src = "../images/fog.png";
+        }else if (weatherImage === "rain") {
+            img.src = "../images/rain.png";
+        } else if (weatherImage === "thunder") {
+            img.src = "../images/thunder.png";
+        } else {
+        //  "default" image for unmatched cases
+            img.src = "../images/default.png"; //
+        }
 
-    
+        
+        //img.src = "../images/rain.png"
+        // For each forecast day element, select the first four paragraph elements within it. 
         const dateParagraph = forecastDays[i].querySelectorAll('p')[0];
-        const tempParagraph = forecastDays[i].querySelectorAll('p')[2];
-        const windParagraph = forecastDays[i].querySelectorAll('p')[3];
-        const humidityParagraph = forecastDays[i].querySelectorAll('p')[4];
-    
+        const tempParagraph = forecastDays[i].querySelectorAll('p')[1];
+        const windParagraph = forecastDays[i].querySelectorAll('p')[2];
+        const humidityParagraph = forecastDays[i].querySelectorAll('p')[3];
+        //update textcontents
         dateParagraph.textContent = formattedDate;
-        tempParagraph.textContent = "Temp: " +  ForecastFiveDays.main.temp + " °F";
+        tempParagraph.textContent = "Temp: " +   kelvinToFahrenheit(ForecastFiveDays.main.temp) + " °F";
         windParagraph.textContent = "Wind:  " + ForecastFiveDays.wind.speed + " MPH";
         humidityParagraph.textContent = "Humidity: " + ForecastFiveDays.main.humidity + " %";
     }
@@ -70,6 +115,7 @@ function rendering(){
 
 }
 
+ // Attempts to retrieve the item 'ForecastFiveDays' from localStorage.
 function ForecastFiveDaysDataLocalStorage() {
     var ForecastFiveDaysData = localStorage.getItem('ForecastFiveDays');
     if (ForecastFiveDaysData) {  
@@ -83,7 +129,7 @@ function ForecastFiveDaysDataLocalStorage() {
 
 
 
-
+// Wait until the DOM is fully loaded before running the script
 document.addEventListener('DOMContentLoaded', function() {
     const cityButtons = document.querySelectorAll('.cities-list .city-button');
     const searchButton = document.querySelector('.search-button');
@@ -104,12 +150,15 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function fetchWeatherData(cityName, apiKey) {
+      // Constructs the URL for fetching the 5-day weather forecast using the city name and API key
     const fivedaysAPIUrl = 'https://api.openweathermap.org/data/2.5/forecast?q=' + cityName + '&appid=' + apiKey;
+     // Constructs the URL for fetching today's weather data using the city name and API key
     const todayAPIUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + cityName + '&appid=' + apiKey;
-
+    // Initiates fetching both the 5-day forecast and today's weather data concurrently
+    // I used this becuase I used two API 
     Promise.all([
  
-
+        //first fetch
         fetch(fivedaysAPIUrl).then(response => {
             var searchInput = document.querySelector('.search-input');
            
@@ -127,6 +176,7 @@ function fetchWeatherData(cityName, apiKey) {
              
             return response.json();
         }),
+        //second fetch
         fetch(todayAPIUrl).then(response => {
 
             if (response.status === 404) {
@@ -139,7 +189,7 @@ function fetchWeatherData(cityName, apiKey) {
         })
     ])
     .then(([FiveDayData, todayData]) => {
-        // Process and log the weather data as before
+        // processWeatherData fucntion with FiveDayData, todayData, cityName passing
         processWeatherData(FiveDayData, todayData, cityName);
     })
     .catch(error => {
@@ -187,23 +237,30 @@ const year = today.getFullYear();
 
 // Format the date as "M/D/YYYY"
 const formattedDate = `${month}/${day}/${year}`;
-    
+  // Define an object to hold today's weather data for a specified city  
     
     var todayData = {
 
      cityname: cityName,
-     temp:  todayData.main.temp,
+     temp:  kelvinToFahrenheit(todayData.main.temp),
      wind:  todayData.wind.speed,
      humidity: todayData.main.humidity,
+     weather: todayData.weather[0].main,
      date: formattedDate
     }
     
     
     
     
-    
+    //saving object to strings to local storage
     
     localStorage.setItem('CityName', JSON.stringify(todayData));
+  // after saving to local storage redering from local storage
 
   rendering();
+}
+//kelvin to F
+function kelvinToFahrenheit(kelvin) {
+    const fahrenheit = (kelvin - 273.15) * 9/5 + 32;
+    return parseFloat(fahrenheit.toFixed(2));
 }

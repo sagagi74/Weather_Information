@@ -1,14 +1,12 @@
-/* Global body styles, setting up the font, removing default margins, 
-   and defining a light gray background for the entire page. */
+/* Global body styles, setting up the font, removing default margins*/
+   
    body {
     font-family: Arial, sans-serif;
     margin: 0;
     background: #f3f3f3;
 }
 
-/* Styling for the main dashboard container. It uses flexbox to 
-   display its children (search and weather containers) in a row 
-   with space distributed around them. Padding is added for spacing inside. */
+/* Styling for the main dashboard container. */
 .dashboard-container {
     display: flex;
     flex-direction: row;
@@ -16,9 +14,7 @@
     justify-content: space-around;
 }
 
-/* Styles for the search container, giving it a white background, 
-   padding for spacing, a specific width, a subtle box shadow for depth, 
-   and rounded corners. */
+/* Styles for the search container */
 .search-container {
     background: white;
     padding: 20px;
@@ -27,9 +23,7 @@
     border-radius: 5px;
 }
 
-/* Input styling within the search container. Includes padding, width 
-   adjustment for slightly less than full width, margin for spacing below, 
-   and block display to ensure it takes its own line. */
+/* Input styling within the search container.  */
 .search-input {
     padding: 10px;
     width: 96%;
@@ -37,9 +31,7 @@
     display: block;
 }
 
-/* Search button styles, including padding, background color, text color, 
-   full width, no border, rounded corners, cursor change on hover, 
-   and margin below for spacing. */
+/* Search button styles. */
 .search-button {
     padding: 10px;
     background: #007bff;
@@ -51,9 +43,7 @@
     margin-bottom: 20px;
 }
 
-/* City button styles within the cities list. It uses block display for full width, 
-   a lighter background for distinction, no border, padding, margin for spacing between, 
-   centered text, and a cursor change on hover. */
+/* City button styles within the cities list.  */
 .city-button {
     display: block;
     background: #e7e7e7;
@@ -75,8 +65,7 @@
     border-radius: 5px;
 }
 
-/* Current weather section within the weather container, including a bottom border for separation, 
-   padding below, and margin for spacing from the next content. */
+/* Current weather section within the weather container */
 .current-weather {
     border-bottom: 2px solid #ddd;
     padding-bottom: 20px;
@@ -96,8 +85,7 @@
     position:relative;
 }
 
-/* Individual forecast day styles, including background color, padding for spacing, width percentage for sizing, 
-   centered text, rounded corners, and a solid border for visual separation. */
+/* Individual forecast day styles, including background color */
 .forecast-day {
     background: #f6e2e2;
     padding: 25px;
@@ -107,9 +95,7 @@
     border: 5px solid rgb(243, 241, 241);
 }
 
-/* Title row styling for larger screens, setting a specific background color, text color, 
-   padding for vertical spacing, centered text, flexbox for alignment, rounded corners, 
-   specific width, and auto margin for horizontal centering. */
+/* Title row styling for larger screens */
 .title-row {
     background-color: rgb(118, 118, 236); 
     color: white; 
@@ -123,7 +109,7 @@
     margin: auto;
 }
 
-
+/* Style for individual forecast day containers */
 .forecast-day {
     background: #f6e2e2;
     padding: 25px;
@@ -149,7 +135,7 @@
     
   
 }
-
+/* Responsive design adjustments for screens up to 768px wide */
 @media (max-width: 768px) {
     .dashboard-container {
         flex-direction: column;
@@ -177,5 +163,9 @@
  
     }
 }
-
+/* Styles for the top weather image */
+#topweatherimage {
+    width: 50px;
+    height: 50px;
+  }
 
