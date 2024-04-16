@@ -23,20 +23,20 @@ var weatherContent = heading.weather.toLowerCase(); // Convert to lowercase for 
 
 // Compare the weather condition and set the image source accordingly
 if (weatherContent === "clear") {
-    imgElement.src = "../images/clear.png";
+    imgElement.src = "./images/clear.png";
 }else if (weatherContent === "clouds") {
-    imgElement.src = "../images/clouds.png";
+    imgElement.src = "./images/clouds.png";
 }else if (weatherContent === "fog") {
-    imgElement.src = "../images/fog.png";
+    imgElement.src = "./images/fog.png";
 }else if (weatherContent === "mist") {
-    imgElement.src = "../images/mist.png"; 
+    imgElement.src = "./images/mist.png"; 
 }else if (weatherContent === "rain") {
-    imgElement.src = "../images/rain.png"; 
+    imgElement.src = "./images/rain.png"; 
 }else if (weatherContent === "thunder") {
-    imgElement.src = "../images/thunder.png"; 
+    imgElement.src = "./images/thunder.png"; 
 }else {
     // Set a default image for unmatched cases
-    imgElement.src = "../images/default.png";
+    imgElement.src = "./images/default.png";
 }
 
   
@@ -80,20 +80,20 @@ if (weatherContent === "clear") {
         var img = forecastDays[i].querySelector('img');
         
         if (weatherImage === "clear") {
-            img.src = "../images/clear.png";
+            img.src = "./images/clear.png";
         } else if (weatherImage === "clouds") {
-            img.src = "../images/clouds.png";
+            img.src = "./images/clouds.png";
         } else if (weatherImage === "mist") {
-            img.src = "../images/mist.png";
+            img.src = "./images/mist.png";
         } else if (weatherContent === "fog") {
-            imgElement.src = "../images/fog.png";
+            imgElement.src = "./images/fog.png";
         }else if (weatherImage === "rain") {
-            img.src = "../images/rain.png";
+            img.src = "./images/rain.png";
         } else if (weatherImage === "thunder") {
-            img.src = "../images/thunder.png";
+            img.src = "./images/thunder.png";
         } else {
         //  "default" image for unmatched cases
-            img.src = "../images/default.png"; //
+            img.src = "./images/default.png"; //
         }
 
         
