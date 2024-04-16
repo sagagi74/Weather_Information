@@ -23,5 +23,5 @@ https://sagagi74.github.io/Weather_Information/ live pages
 
 
 
-![Application Image](assets/images/weatherInformation.JPG)
+![Application Image](images/weatherInformation.JPG)
 
