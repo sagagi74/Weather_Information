@@ -4,20 +4,17 @@ rendering()
 // Function call to start the rendering process
 function rendering(){
  
-   //redering for current weather if data exist
+   
    
 const weatherHeading = document.querySelector('.current-weather h2');
- 
+ //redering for current weather if data exist
 if (!localStorage.getItem('CityName')) {
-    // If 'cityName' is not found in localStorage, stop further execution.
-    console.log('cityName not found in localStorage. Stopping execution.');
-    // You can optionally perform some other action here or simply return to stop.
-    // Stop the execution of the function if 'cityName' is not present.
+    // If 'cityName' is not found in localStorage rendering
+    //console.log('cityName not found');
+
 }else {
 
-    console.log('cityName  found in localStorage. Stopping execution.');
-
-
+    //console.log('cityName  found in localStorage.');
 
 
 // Retrieve info from localStorage and parse it
