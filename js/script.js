@@ -10,6 +10,14 @@ function rendering(){
   
 // Retrieve info from localStorage and parse it
 var heading = JSON.parse(localStorage.getItem('CityName'));
+if (heading === null)
+{
+
+    console.log(`The city ${cityName} no in local storage.`);
+
+}else {
+
+
 console.log(heading.cityname);
 
 // Set the content of weatherHeading with city name and date
@@ -111,7 +119,7 @@ if (weatherContent === "clear") {
     }
 
 
-
+}
 
 }
 
