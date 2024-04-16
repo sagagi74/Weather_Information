@@ -10,13 +10,11 @@ function rendering(){
   
 // Retrieve info from localStorage and parse it
 var heading = JSON.parse(localStorage.getItem('CityName'));
-if (heading === null)
-{
 
-    console.log(`The city ${cityName} no in local storage.`);
-
-}else {
-
+if (!heading) {
+    console.log('CityName not found in localStorage. Stopping execution.');
+    return; // Exits the function early
+}
 
 console.log(heading.cityname);
 
@@ -119,7 +117,7 @@ if (weatherContent === "clear") {
     }
 
 
-}
+
 
 }
 
