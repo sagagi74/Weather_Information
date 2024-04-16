@@ -3,11 +3,23 @@
 rendering()
 // Function call to start the rendering process
 function rendering(){
-
+ 
    //redering for current weather if data exist
    
-  const weatherHeading = document.querySelector('.current-weather h2');
-  
+const weatherHeading = document.querySelector('.current-weather h2');
+ 
+if (!localStorage.getItem('CityName')) {
+    // If 'cityName' is not found in localStorage, stop further execution.
+    console.log('cityName not found in localStorage. Stopping execution.');
+    // You can optionally perform some other action here or simply return to stop.
+    // Stop the execution of the function if 'cityName' is not present.
+}else {
+
+    console.log('cityName  found in localStorage. Stopping execution.');
+
+
+
+
 // Retrieve info from localStorage and parse it
 var heading = JSON.parse(localStorage.getItem('CityName'));
 
@@ -17,6 +29,8 @@ if (!heading) {
 }
 
 console.log(heading.cityname);
+
+
 
 // Set the content of weatherHeading with city name and date
 weatherHeading.textContent = heading.cityname + " (" + heading.date + ") ";
@@ -115,6 +129,34 @@ if (weatherContent === "clear") {
         windParagraph.textContent = "Wind:  " + ForecastFiveDays.wind.speed + " MPH";
         humidityParagraph.textContent = "Humidity: " + ForecastFiveDays.main.humidity + " %";
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+};
+
+
+
+
+
+
 
 
 
