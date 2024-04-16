@@ -20,10 +20,6 @@ if (!localStorage.getItem('CityName')) {
 // Retrieve info from localStorage and parse it
 var heading = JSON.parse(localStorage.getItem('CityName'));
 
-if (!heading) {
-    console.log('CityName not found in localStorage. Stopping execution.');
-    return; // Exits the function early
-}
 
 console.log(heading.cityname);
 
